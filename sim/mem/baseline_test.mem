@@ -1,0 +1,23 @@
+// Baseline benchmark: same loop structure as perf_tb, no CSR/TLB
+// For N pages: outer loop 10 iterations, inner loop N pages
+// Each inner iteration: LW from page[i] address
+
+// T3 version (8 pages, 80 loads total):
+// Setup
+00000413    // addi x8, x0, 0        # outer counter = 0
+00A00493    // addi x9, x0, 10       # outer limit = 10
+00800513    // addi x10, x0, 8       # inner limit = 8 pages
+
+// Outer loop (PC = 0x0C = word addr 3):
+00000593    // addi x11, x0, 0       # inner counter = 0
+
+// Inner loop (PC = 0x10 = word addr 4):
+00C59613    // slli x12, x11, 12     # page_addr = inner * 4096
+00062683    // lw x13, 0(x12)        # *** THE DATA ACCESS ***
+00158593    // addi x11, x11, 1      # inner++
+FEA59CE3    // blt x11, x10, -8      # if inner < 8, repeat
+
+00140413    // addi x8, x8, 1        # outer++
+FE9444E3    // blt x8, x9, -24       # if outer < 10, repeat
+
+00100073    // ebreak                 # halt

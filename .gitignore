@@ -1,0 +1,54 @@
+# ==============================================================================
+# .gitignore for RISC-V Sv32 TLB Project
+# ==============================================================================
+
+# --- Vivado Project Files (auto-generated) ---
+*.xpr
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.hbs
+*.jou
+*.log
+*.pb
+*.str
+*.wdb
+*.vcd
+xsim.dir/
+.Xil/
+
+# --- Bitstreams (large binary files) ---
+*.bit
+*.bin
+*.ltx
+
+# --- Simulation snapshots ---
+*.wdb
+*.vcd
+
+# --- Backup files ---
+*.backup.*
+*.bak
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# --- IDE ---
+.vscode/
+.idea/
+*.suo
+*.user
